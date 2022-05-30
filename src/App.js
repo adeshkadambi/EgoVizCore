@@ -1,12 +1,19 @@
 import React from "react";
+import { Route, Routes } from "react-router-dom";
+import Dashboard from "./components/Dashboard";
+import Login from "./components/Login";
+import ProtectedRoute from "./components/ProtectedRoute";
+import { AuthContextProvider } from './context/AuthContext';
 
 function App() {
   return (
     <div>
-      <h1 className="text-slate-50 text-2xl font-semibold flex justify-center align-middle mt-[25%]">
-        Coming Soon
-      </h1>
-      <p className="flex justify-center text-slate-400">CDSS Study Web App lives here.</p>
+      <AuthContextProvider>
+        <Routes>
+          <Route path="/" element={<Login />} />
+          <Route path='/dashboard' element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+        </Routes>
+      </AuthContextProvider>
     </div>
   );
 }
