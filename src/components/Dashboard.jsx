@@ -35,9 +35,15 @@ const Dashboard = () => {
 			<div className="py-10">
 				<header>
 					<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-						<h1 className="text-3xl font-bold leading-tight text-gray-900">
-							Dashboard
-						</h1>
+              <h1 className="text-3xl font-bold leading-tight text-slate-900 inline">Dashboard</h1>
+              <p className='inline ml-1 text-slate-400'>Beta.</p>
+              <p className='font-light text-sm text-slate-500 text-justify mt-1'>
+                Disclaimer: This dashboard aims to provide an overview of patient hand use at home by including 
+                previously validated hand use metrics. Metrics for hand use quantity include the proportion of interaction 
+                across total recording time, the number of interactions per hour, and the average duration of interactions.
+                Metrics for hand usage quality and context include an activity breakdown by ADL category, including objects used,
+                and video snippets. Please note that this dashboard is actively in development and your feedback is greatly appreciated.
+              </p>
 					</div>
 				</header>
 				{!current ? (
