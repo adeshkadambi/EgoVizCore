@@ -10,7 +10,7 @@ import {
   Title,
   Tooltip,
   Legend,
-  defaults
+  defaults,
 } from "chart.js";
 import { Bar, Line, Doughnut } from "react-chartjs-2";
 
@@ -45,6 +45,11 @@ const Reports = (props) => {
 
   const options = {
     responsive: true,
+    plugins: {
+      legend: {
+        position: "bottom",
+      },
+    },
   };
 
   // TODO: populate page on bar chart click
@@ -55,7 +60,8 @@ const Reports = (props) => {
   //   console.log(get[0].element.$context.dataIndex);
   // }
 
-  defaults.font.family = "ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Roboto, Arial, sans-serif";
+  defaults.font.family =
+    "ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Roboto, Arial, sans-serif";
 
   const labels = dates;
 
@@ -76,15 +82,15 @@ const Reports = (props) => {
       {
         label: "Right Hand",
         data: pctIntR,
-        borderColor: '#fb7185', // rose-400
+        borderColor: "#fb7185", // rose-400
         backgroundColor: "#f43f5e", // rose-500
       },
       {
         label: "Left Hand",
         data: pctIntL,
-        borderColor: '#38bdf8', //sky-400
+        borderColor: "#38bdf8", //sky-400
         backgroundColor: "#0ea5e9", //sky-500
-      }
+      },
     ],
   };
 
@@ -94,15 +100,15 @@ const Reports = (props) => {
       {
         label: "Right Hand",
         data: numIntR,
-        borderColor: '#fb7185', // rose-400
+        borderColor: "#fb7185", // rose-400
         backgroundColor: "#f43f5e", // rose-500
       },
       {
         label: "Left Hand",
         data: numIntL,
-        borderColor: '#38bdf8', //sky-400
+        borderColor: "#38bdf8", //sky-400
         backgroundColor: "#0ea5e9", //sky-500
-      }
+      },
     ],
   };
 
@@ -112,15 +118,15 @@ const Reports = (props) => {
       {
         label: "Right Hand",
         data: avgIntR,
-        borderColor: '#fb7185', // rose-400
+        borderColor: "#fb7185", // rose-400
         backgroundColor: "#f43f5e", // rose-500
       },
       {
         label: "Left Hand",
         data: avgIntL,
-        borderColor: '#38bdf8', //sky-400
+        borderColor: "#38bdf8", //sky-400
         backgroundColor: "#0ea5e9", //sky-500
-      }
+      },
     ],
   };
 
@@ -128,23 +134,23 @@ const Reports = (props) => {
     labels: adls,
     datasets: [
       {
-        label: 'Minutes Recorded',
+        label: "Minutes Recorded",
         data: minADL,
         backgroundColor: [
-          '#4ade80', // sky-400
-          '#2dd4bf', // teal-400
-          '#38bdf8',
-          '#818cf8',
-          '#c084fc',
-          '#f472b6',
+          "#bae6fd", // sky-400
+          "#7dd3fc", // teal-400
+          "#38bdf8",
+          "#0ea5e9",
+          "#0284c7",
+          "#0369a1",
         ],
         borderColor: [
-          '#f8fafc',
-          '#f8fafc',
-          '#f8fafc',
-          '#f8fafc',
-          '#f8fafc',
-          '#f8fafc',
+          "#f8fafc",
+          "#f8fafc",
+          "#f8fafc",
+          "#f8fafc",
+          "#f8fafc",
+          "#f8fafc",
         ],
         borderWidth: 2,
       },
@@ -163,36 +169,71 @@ const Reports = (props) => {
             </div>
             <div className="grid grid-cols-2 gap-12 mt-4">
               <div className="">
-                <h1 className="inline text-lg font-medium mb-4 ml-4 text-slate-500">Minutes Recorded</h1>
-                <p className='inline text-sm ml-1 text-slate-400'>(per day)</p>
+                <div className="mb-4">
+                  <h1 className="inline text-lg font-medium mb-4 ml-4 text-slate-500">
+                    Minutes Recorded
+                  </h1>
+                  <p className="inline text-sm ml-1 text-slate-400">
+                    (per day)
+                  </p>
+                </div>
                 <Bar options={options} data={barData} />
               </div>
               <div className="">
-                <h1 className="inline text-lg font-medium mb-4 ml-4 text-slate-500">Percentage Interaction</h1>
-                <p className='inline text-sm ml-1 text-slate-400'>(% of video they were "using" their hands)</p>
+                <div className="mb-4">
+                  <h1 className="inline text-lg font-medium mb-4 ml-4 text-slate-500">
+                    Percentage Interaction
+                  </h1>
+                  <p className="inline text-sm ml-1 text-slate-400">
+                    (% of video they were "using" their hands)
+                  </p>
+                </div>
                 <Line options={options} data={pctInt} />
               </div>
               <div className="">
-                <h1 className="inline text-lg font-medium mb-4 ml-4 text-slate-500">Number of Interactions</h1>
-                <p className='inline text-sm ml-1 text-slate-400'>(per hour)</p>
+                <div className="mb-4">
+                  <h1 className="inline text-lg font-medium mb-4 ml-4 text-slate-500">
+                    Number of Interactions
+                  </h1>
+                  <p className="inline text-sm ml-1 text-slate-400">
+                    (per hour)
+                  </p>
+                </div>
                 <Line options={options} data={numInt} />
               </div>
               <div className="">
-                <h1 className="inline text-lg font-medium mb-4 ml-4 text-slate-500">Average Interaction Duration</h1>
-                <p className='inline text-sm ml-1 text-slate-400'>(seconds)</p>
+                <div className="mb-4">
+                  <h1 className="inline text-lg font-medium mb-4 ml-4 text-slate-500">
+                    Average Interaction Duration
+                  </h1>
+                  <p className="inline text-sm ml-1 text-slate-400">
+                    (seconds)
+                  </p>
+                </div>
                 <Line options={options} data={avgInt} />
               </div>
-              <div className=""> 
-                <h1 className="inline text-lg font-medium mb-4 ml-4 text-slate-500">Activity Breakdown</h1>
-                <p className='inline text-sm ml-1 text-slate-400'>(ADL Category)</p>
+              <div className="">
+                <div className="mb-4">
+                  <h1 className="inline text-lg font-medium mb-4 ml-4 text-slate-500">
+                    Activity Breakdown
+                  </h1>
+                  <p className="inline text-sm ml-1 text-slate-400">
+                    (ADL Category)
+                  </p>
+                </div>
                 <div className="w-[80%]">
                   <Doughnut options={options} data={adlCats} />
                 </div>
               </div>
               <div className="">
-                <h1 className="inline text-lg font-medium mb-4 ml-4 text-slate-500">Video Snippets</h1>
-                <p className='inline text-sm ml-1 text-slate-400'>(click to view)</p>
-                
+                <div className="mb-4">
+                  <h1 className="inline text-lg font-medium mb-4 ml-4 text-slate-500">
+                    Video Snippets
+                  </h1>
+                  <p className="inline text-sm ml-1 text-slate-400">
+                    (click to view)
+                  </p>
+                </div>
               </div>
             </div>
           </div>
