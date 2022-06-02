@@ -293,6 +293,22 @@ const Reports = (props) => {
                   ))}
                 </ul>
               </div>
+              <div className='col-span-2'>
+                <div className='mb-4'>
+                  <h1 className='inline text-lg font-medium mb-4 ml-4 text-slate-500'>
+                    Hand Posture Usage
+                  </h1>
+                  <p className='inline text-sm ml-1 text-slate-400'>
+                    (highlights from videos)
+                  </p>
+                </div>
+                <div className="grid grid-cols-4 gap-4">
+                  <div><img src="https://firebasestorage.googleapis.com/v0/b/egocdss.appspot.com/o/img_eating.png?alt=media&token=b8aa851c-2c58-4696-82b4-e11f7bf553d8" alt="" /></div>
+                  <div><img src="https://firebasestorage.googleapis.com/v0/b/egocdss.appspot.com/o/img_eating2.png?alt=media&token=2f006b37-4e40-4357-b1d6-ba7973384d08" alt="" /></div>
+                  <div><img src="https://firebasestorage.googleapis.com/v0/b/egocdss.appspot.com/o/img_eating3.png?alt=media&token=fdfff223-7c26-4128-8243-e289ebc7b47b" alt="" /></div>
+                  <div><img src="https://firebasestorage.googleapis.com/v0/b/egocdss.appspot.com/o/img_writing.png?alt=media&token=dcb080cb-c4b0-465f-b58f-887c58cc3568" alt="" /></div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
