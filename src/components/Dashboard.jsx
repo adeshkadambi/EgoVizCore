@@ -112,6 +112,7 @@ const Dashboard = () => {
                         </thead>
                         <tbody className='divide-y divide-gray-200 bg-white'>
                           {patients
+                          // eslint-disable-next-line
                             .filter((value) => {
                               if (searchTerm === "") {
                                 return value;
