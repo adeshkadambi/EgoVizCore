@@ -17,7 +17,6 @@ const Login = () => {
       navigate("/dashboard");
     } catch (e) {
       setError(e.message);
-      console.log(e.message, error);
     }
   };
 
@@ -77,6 +76,9 @@ const Login = () => {
                   className='w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-sky-400 hover:bg-sky-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500'>
                   Sign in
                 </button>
+              </div>
+              <div className='text-sm font-medium text-red-600'>
+                {(error === '') ? null : <p>Invalid credentials, please try again...</p>}
               </div>
             </form>
           </div>
