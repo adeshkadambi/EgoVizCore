@@ -133,6 +133,7 @@ const ChartItem = (props) => {
 						{props.title}
 					</h1>
 					<p className="inline text-sm ml-1 text-slate-400">({props.subtitle})</p>
+					
 				</div>
 				<div className="w-[80%] h-[80%]">
 					<Doughnut data={pieData} />
