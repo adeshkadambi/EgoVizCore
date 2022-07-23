@@ -67,11 +67,13 @@ const Reports = (props) => {
               <ChartItem
                 type={"line"}
                 title={"Percentage Interaction"}
-                subtitle={'per day'}
+                subtitle={"per day"}
                 labels={dates}
                 dataL={pctIntL}
                 dataR={pctIntR}
-				tooltip={'Percentage of frames in video where an interaction is detected.'}
+                tooltip={
+                  "The percentage of frames in all the video footage per day where an interaction is detected and defined as an isolated event where either hand is touching or holding an object with definite start and end points."
+                }
               />
               <ChartItem
                 type={"line"}
@@ -80,6 +82,9 @@ const Reports = (props) => {
                 labels={dates}
                 dataL={numIntL}
                 dataR={numIntR}
+				tooltip={
+					"The number of interactions per hour of footage, where an interaction is defined as an isolated event where either hand is touching or holding an object with definite start and end points."
+				  }
               />
               <ChartItem
                 type={"line"}
@@ -88,6 +93,9 @@ const Reports = (props) => {
                 labels={dates}
                 dataL={avgIntL}
                 dataR={avgIntR}
+				tooltip={
+					"The average duration of each interaction, where an interaction is defined as an isolated event where either hand is touching or holding an object with definite start and end points."
+				  }
               />
               <ChartItem
                 type={"pie"}
@@ -95,6 +103,12 @@ const Reports = (props) => {
                 subtitle={"minutes"}
                 labels={adls}
                 data={minADL}
+				tooltip={
+					`
+					Feeding: Setting up, arranging, and bringing food [or fluid] from the plate or cup to the mouth; sometimes called self-feeding.
+					Functional Mobility: Moving from one position or place to another (during performance of everyday activities), such as in-bed mobility, wheelchair mobility, and transfers (e.g., wheelchair, bed, car, shower, tub, toilet, chair, floor). Includes functional ambulation and transportation of objects.
+					`
+				}
               />
               <div className=''>
                 <div className='mb-4'>

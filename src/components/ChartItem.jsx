@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -41,6 +41,12 @@ const ChartItem = (props) => {
       },
     },
   };
+
+  const [visible, setVisible] = useState(false)
+
+  const toggleVisible = () => {
+    setVisible(!visible)
+  }
 
   if (props.type === "bar") {
     const barData = {
@@ -154,15 +160,15 @@ const ChartItem = (props) => {
           <p className='inline text-sm ml-1 text-slate-400'>
             ({props.subtitle})
           </p>
-          {props.tooltip ? (
-            <div className='tooltip' data-tip={props.tooltip}>
-              <InformationCircleIcon
-                className='ml-2 w-4 h-4 inline text-slate-500 hover:text-slate-400'
-                aria-hidden='true'
-                data-tooltip-target='tooltip-default'
-              />
-            </div>
-          ) : null}
+          <button onClick={toggleVisible} className='text-slate-500 hover:text-slate-300'>
+            <InformationCircleIcon
+              className='ml-6 w-4 h-4 inline'
+              aria-hidden='true'
+            />
+            <span className='text-sm ml-1 inline align-middle'>
+              Click for more information
+            </span>
+          </button>
         </div>
         <div className='w-[80%] h-[80%]'>
           <Doughnut data={pieData} />
