@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -41,12 +41,6 @@ const ChartItem = (props) => {
       },
     },
   };
-
-  const [visible, setVisible] = useState(false)
-
-  const toggleVisible = () => {
-    setVisible(!visible)
-  }
 
   if (props.type === "bar") {
     const barData = {
@@ -160,7 +154,7 @@ const ChartItem = (props) => {
           <p className='inline text-sm ml-1 text-slate-400'>
             ({props.subtitle})
           </p>
-          <button onClick={toggleVisible} className='text-slate-500 hover:text-slate-300'>
+          <button onClick={props.onOpen} className='text-slate-500 hover:text-slate-300'>
             <InformationCircleIcon
               className='ml-6 w-4 h-4 inline'
               aria-hidden='true'

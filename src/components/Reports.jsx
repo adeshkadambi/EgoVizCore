@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState} from "react";
 import ChartItem from "./ChartItem";
 import { ChevronRightIcon } from "@heroicons/react/outline";
 import { HomeIcon } from "@heroicons/react/solid";
 import { videos } from "../data/videodata";
+import Modal from "./Modal";
 
 const Reports = (props) => {
   const patient = props.patient;
@@ -21,9 +22,13 @@ const Reports = (props) => {
   const adls = activity[0].split(", ");
   const minADL = activity[1].split(",").map(Number);
 
+  const [showModal, setShowModal] = useState(false);
+  const openModal = () => setShowModal(!showModal);
+
   return (
     <div>
       <main className='mt-4'>
+        {showModal ? (<Modal open={showModal} setOpen={setShowModal}/>): null}
         <div className='max-w-7xl mx-auto pb-12 px-4 sm:px-6 lg:px-8'>
           <div className='bg-white rounded-lg shadow px-5 py-6 sm:px-6'>
             <nav class='flex' aria-label='Breadcrumb' className='mb-4'>
@@ -72,7 +77,7 @@ const Reports = (props) => {
                 dataL={pctIntL}
                 dataR={pctIntR}
                 tooltip={
-                  "The percentage of frames in all the video footage per day where an interaction is detected and defined as an isolated event where either hand is touching or holding an object with definite start and end points."
+                  "The percentage of frames per day where an interaction is detected (i.e., patient's hand is touching or holding an object)."
                 }
               />
               <ChartItem
@@ -82,9 +87,9 @@ const Reports = (props) => {
                 labels={dates}
                 dataL={numIntL}
                 dataR={numIntR}
-				tooltip={
-					"The number of interactions per hour of footage, where an interaction is defined as an isolated event where either hand is touching or holding an object with definite start and end points."
-				  }
+                tooltip={
+                  "The number of times the patient's hand is touching or holding an object per hour of footage."
+                }
               />
               <ChartItem
                 type={"line"}
@@ -93,9 +98,9 @@ const Reports = (props) => {
                 labels={dates}
                 dataL={avgIntL}
                 dataR={avgIntR}
-				tooltip={
-					"The average duration of each interaction, where an interaction is defined as an isolated event where either hand is touching or holding an object with definite start and end points."
-				  }
+                tooltip={
+                  "The average duration of each interaction (e.g., patient grabs fork for 5 sec at a time on average while eating before putting it back down)."
+                }
               />
               <ChartItem
                 type={"pie"}
@@ -103,12 +108,7 @@ const Reports = (props) => {
                 subtitle={"minutes"}
                 labels={adls}
                 data={minADL}
-				tooltip={
-					`
-					Feeding: Setting up, arranging, and bringing food [or fluid] from the plate or cup to the mouth; sometimes called self-feeding.
-					Functional Mobility: Moving from one position or place to another (during performance of everyday activities), such as in-bed mobility, wheelchair mobility, and transfers (e.g., wheelchair, bed, car, shower, tub, toilet, chair, floor). Includes functional ambulation and transportation of objects.
-					`
-				}
+                onOpen={openModal}
               />
               <div className=''>
                 <div className='mb-4'>
