@@ -41,25 +41,50 @@
 //     },
 // ];
 
+// export const videos = [
+//   {
+//     name: "Meal Prep 1",
+//     duration: "01:00",
+//     url: "https://firebasestorage.googleapis.com/v0/b/egocdss.appspot.com/o/p-03%2FGOPR0501--1.MP4?alt=media&token=eb82c5f4-55b9-4f84-a15c-3b41ab6773d6",
+//   },
+//   {
+//     name: "Meal Prep 2",
+//     duration: "01:00",
+//     url: "https://firebasestorage.googleapis.com/v0/b/egocdss.appspot.com/o/p-03%2FGOPR0507--1.MP4?alt=media&token=061c13fc-380c-487b-9ac8-4e805f4ecea4",
+//   },
+//   {
+//     name: "Functional Mobility 1",
+//     duration: "01:00",
+//     url: "https://firebasestorage.googleapis.com/v0/b/egocdss.appspot.com/o/p-03%2FGOPR0516--2.MP4?alt=media&token=8a1af390-cd1f-415c-bcee-0cabdd0a8538",
+//   },
+//   {
+//     name: "Leisure 1",
+//     duration: "01:00",
+//     url: "https://firebasestorage.googleapis.com/v0/b/egocdss.appspot.com/o/p-03%2FGOPR0777--7.MP4?alt=media&token=adfc5d31-3eac-440e-a5ea-d3aa0d7ec69c",
+//   },
+// ];
+
+// P-02
+
 export const videos = [
   {
     name: "Meal Prep 1",
     duration: "01:00",
-    url: "https://firebasestorage.googleapis.com/v0/b/egocdss.appspot.com/o/p-03%2FGOPR0501--1.MP4?alt=media&token=eb82c5f4-55b9-4f84-a15c-3b41ab6773d6",
+    url: "https://firebasestorage.googleapis.com/v0/b/egocdss.appspot.com/o/p-02%2FGP012790--2.MP4?alt=media&token=dcd0221e-7125-4546-8c43-da3341042958",
   },
   {
-    name: "Meal Prep 2",
+    name: "Feeding 1",
     duration: "01:00",
-    url: "https://firebasestorage.googleapis.com/v0/b/egocdss.appspot.com/o/p-03%2FGOPR0507--1.MP4?alt=media&token=061c13fc-380c-487b-9ac8-4e805f4ecea4",
+    url: "https://firebasestorage.googleapis.com/v0/b/egocdss.appspot.com/o/p-02%2FGP062788--5.MP4?alt=media&token=b5efa7e2-47b9-4e44-9276-68bf624a5fea",
   },
   {
-    name: "Functional Mobility 1",
+    name: "Home Mangement 1",
     duration: "01:00",
-    url: "https://firebasestorage.googleapis.com/v0/b/egocdss.appspot.com/o/p-03%2FGOPR0516--2.MP4?alt=media&token=8a1af390-cd1f-415c-bcee-0cabdd0a8538",
+    url: "https://firebasestorage.googleapis.com/v0/b/egocdss.appspot.com/o/p-02%2FGP012789--7.MP4?alt=media&token=dc8d6693-f315-42f5-8b8e-31159b771711",
   },
   {
-    name: "Leisure 1",
+    name: "Communication Management 1",
     duration: "01:00",
-    url: "https://firebasestorage.googleapis.com/v0/b/egocdss.appspot.com/o/p-03%2FGOPR0777--7.MP4?alt=media&token=adfc5d31-3eac-440e-a5ea-d3aa0d7ec69c",
+    url: "https://firebasestorage.googleapis.com/v0/b/egocdss.appspot.com/o/p-02%2FGP012788--2.MP4?alt=media&token=1b45351c-939f-4d2e-826e-d1d359d6a368",
   },
 ];
