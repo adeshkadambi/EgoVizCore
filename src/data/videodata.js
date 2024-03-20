@@ -92,25 +92,50 @@
 
 // P-04
 
+// export const videos = [
+//   {
+//     name: "Meal Prep 1",
+//     duration: "01:00",
+//     url: "https://firebasestorage.googleapis.com/v0/b/egocdss.appspot.com/o/p-04%2FGOPR1125--7.MP4?alt=media&token=e43d7541-2492-4d54-902a-5151880e3fd5",
+//   },
+//   {
+//     name: "Health Management 1",
+//     duration: "01:00",
+//     url: "https://firebasestorage.googleapis.com/v0/b/egocdss.appspot.com/o/p-04%2FGOPR1055--4.MP4?alt=media&token=953c3891-93a1-460f-945f-a1bf8eef07e7",
+//   },
+//   {
+//     name: "Home Mangement 1",
+//     duration: "01:00",
+//     url: "https://firebasestorage.googleapis.com/v0/b/egocdss.appspot.com/o/p-04%2FGOPR1130--11.MP4?alt=media&token=b5aebcd6-4227-4a3d-815c-fb3da9f85a4b",
+//   },
+//   {
+//     name: "Home Mangement 2",
+//     duration: "01:00",
+//     url: "https://firebasestorage.googleapis.com/v0/b/egocdss.appspot.com/o/p-04%2FGP010880--2.MP4?alt=media&token=ba5eb589-6e15-4353-a580-2844b995267b",
+//   },
+// ];
+
+// P-05
+
 export const videos = [
   {
-    name: "Meal Prep 1",
+    name: "Self-Feeding 1",
     duration: "01:00",
-    url: "https://firebasestorage.googleapis.com/v0/b/egocdss.appspot.com/o/p-04%2FGOPR1125--7.MP4?alt=media&token=e43d7541-2492-4d54-902a-5151880e3fd5",
+    url: "https://firebasestorage.googleapis.com/v0/b/egocdss.appspot.com/o/p-05%2FGOPR2809--8.MP4?alt=media&token=9217a927-468d-4217-abb8-bb81d2fa5011",
   },
   {
-    name: "Health Management 1",
+    name: "Grooming / Health Management 1",
     duration: "01:00",
-    url: "https://firebasestorage.googleapis.com/v0/b/egocdss.appspot.com/o/p-04%2FGOPR1055--4.MP4?alt=media&token=953c3891-93a1-460f-945f-a1bf8eef07e7",
+    url: "https://firebasestorage.googleapis.com/v0/b/egocdss.appspot.com/o/p-05%2FGOPR2808--3.MP4?alt=media&token=132b46e0-04f8-4c86-a1be-bc75649d286e",
   },
   {
     name: "Home Mangement 1",
     duration: "01:00",
-    url: "https://firebasestorage.googleapis.com/v0/b/egocdss.appspot.com/o/p-04%2FGOPR1130--11.MP4?alt=media&token=b5aebcd6-4227-4a3d-815c-fb3da9f85a4b",
+    url: "https://firebasestorage.googleapis.com/v0/b/egocdss.appspot.com/o/p-05%2FGP022808--1.MP4?alt=media&token=25d89c99-9fd5-4e23-a2fc-02a95e760e9c",
   },
   {
     name: "Home Mangement 2",
     duration: "01:00",
-    url: "https://firebasestorage.googleapis.com/v0/b/egocdss.appspot.com/o/p-04%2FGP010880--2.MP4?alt=media&token=ba5eb589-6e15-4353-a580-2844b995267b",
+    url: "https://firebasestorage.googleapis.com/v0/b/egocdss.appspot.com/o/p-05%2FGP032808--2.MP4?alt=media&token=8f175c70-f60f-4ec0-80f3-595e29464bd7",
   },
 ];
