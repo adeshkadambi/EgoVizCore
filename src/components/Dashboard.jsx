@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import { UserAuth } from "../context/AuthContext";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { db } from "../firebase";
@@ -9,9 +10,11 @@ import PatientTable from "./PatientTable";
 
 const Dashboard = () => {
   const { user } = UserAuth();
-  const [patients, setPatients] = useState([]); // get patients from firestore
-  const [current, setCurrent] = useState(null); // selected patient for view reports
-  const [searchTerm, setSearchTerm] = useState(""); // filter by search bar
+  const [patients, setPatients] = useState([]);
+  const [current, setCurrent] = useState(null);
+  const [searchTerm, setSearchTerm] = useState("");
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     async function fetchData() {
@@ -29,7 +32,17 @@ const Dashboard = () => {
     fetchData();
   }, [user]);
 
-  const closePatient = () => setCurrent(null);
+  // Sync patient view with browser history so back button returns to the list
+  useEffect(() => {
+    if (!location.state?.viewing) setCurrent(null);
+  }, [location.state]);
+
+  const selectPatient = (patient) => {
+    setCurrent(patient);
+    navigate(".", { state: { viewing: true } });
+  };
+
+  const closePatient = () => navigate(-1);
 
   return (
     <div>
@@ -65,7 +78,7 @@ const Dashboard = () => {
                     <PatientTable
                       pts={patients}
                       searchValue={searchTerm}
-                      currentPatientSetter={setCurrent}
+                      currentPatientSetter={selectPatient}
                     />
                   </div>
                 </div>
