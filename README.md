@@ -1,70 +1,138 @@
-# Getting Started with Create React App
+# EgoVizCore
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A web-based clinical decision support system (CDSS) for monitoring hand function in occupational therapy patients. Clinicians log in, view their assigned patients, and review per-patient hand use reports including quantity metrics, activity breakdowns, and video snippets captured from egocentric wearable cameras.
 
-## Available Scripts
+> **Status:** Active development / Beta. Currently deployed at Firebase Hosting and used with real patient data.
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## What it does
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **Login** — Firebase email/password authentication; only accounts provisioned in Firebase Auth can log in.
+- **Dashboard** — Shows all patients assigned to the logged-in clinician (queried from Firestore by `uid`).
+- **Patient Reports** — Per-patient view with:
+  - Hand use quantity metrics (minutes recorded, % interaction, interactions/hour, avg interaction duration) displayed as bar/line charts
+  - Activity breakdown by ADL category (pie/doughnut chart) with a reference modal for ADL definitions
+  - Video snippets linked to Firebase Storage
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+---
 
-### `npm test`
+## Tech stack
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+| Layer | Technology |
+|---|---|
+| Frontend | React 18, React Router v6 |
+| Styling | Tailwind CSS v3, daisyUI, Headless UI |
+| Charts | Chart.js v3, react-chartjs-2 |
+| Backend / DB | Firebase (Auth, Firestore, Storage) |
+| Deployment | Firebase Hosting via GitHub Actions |
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Project structure
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```
+src/
+  components/
+    Login.jsx          # Email/password login form
+    Nav.jsx            # Top navbar with logout
+    Dashboard.jsx      # Patient list + search
+    PatientTable.jsx   # Table rendering filtered patient rows
+    SearchBar.jsx      # Filters PatientTable by name, therapist, location, dx
+    Reports.jsx        # Full report view for a selected patient
+    ChartItem.jsx      # Reusable chart wrapper (bar, line, doughnut)
+    Modal.jsx          # ADL/IADL category reference modal
+    ProtectedRoute.js  # Redirects unauthenticated users to /
+  context/
+    AuthContext.js     # Firebase auth state (user, loading, signIn, logout)
+  data/
+    adls.js            # Static ADL category definitions used in the modal
+    videodata.js       # Video metadata per patient (swap the active export to change patient)
+  firebase.js          # Firebase app init, exports db and auth
+  App.js               # Routes: / (Login), /dashboard (ProtectedRoute > Dashboard)
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
 
-### `npm run eject`
+## Local setup
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+**Prerequisites:** Node.js 16+, a Firebase project with Auth and Firestore enabled.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. Clone the repo and install dependencies:
+   ```bash
+   npm install
+   ```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+2. Create a `.env` file in the root (never commit this):
+   ```
+   REACT_APP_FIREBASE_API_KEY=...
+   REACT_APP_FIREBASE_AUTH_DOMAIN=...
+   REACT_APP_FIREBASE_PROJECT_ID=...
+   REACT_APP_FIREBASE_STORAGE_BUCKET=...
+   REACT_APP_FIREBASE_MESSAGING_SENDER_ID=...
+   REACT_APP_FIREBASE_APP_ID=...
+   ```
+   Values are in the Firebase console under Project Settings → Your apps.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+3. Start the dev server:
+   ```bash
+   npm start
+   ```
+   Opens at [http://localhost:3000](http://localhost:3000).
 
-## Learn More
+---
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Firestore data model
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### `patients` collection
 
-### Code Splitting
+Each document represents one patient and is scoped to a clinician via the `show` field (clinician's Firebase `uid`).
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```
+patients/{docId}
+  name:      string          // patient display name
+  dx:        string          // diagnosis
+  location:  string          // clinic/site
+  therapist: string          // assigned therapist name
+  show:      string          // clinician uid — controls who sees this patient
+  quantity:  string[]        // 8-element array of comma-separated metric strings:
+                             //   [0] dates, [1] minRecord, [2] pctIntL, [3] pctIntR,
+                             //   [4] numIntL, [5] numIntR, [6] avgIntL, [7] avgIntR
+  activity:  string[]        // 2-element array:
+                             //   [0] comma-separated ADL category names
+                             //   [1] comma-separated minutes per ADL
+```
 
-### Analyzing the Bundle Size
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Deployment
 
-### Making a Progressive Web App
+Pushes to `main` automatically build and deploy to Firebase Hosting via `.github/workflows/firebase-hosting-merge.yml`.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+The workflow requires these GitHub Actions secrets (Settings → Secrets and variables → Actions):
 
-### Advanced Configuration
+```
+REACT_APP_FIREBASE_API_KEY
+REACT_APP_FIREBASE_AUTH_DOMAIN
+REACT_APP_FIREBASE_PROJECT_ID
+REACT_APP_FIREBASE_STORAGE_BUCKET
+REACT_APP_FIREBASE_MESSAGING_SENDER_ID
+REACT_APP_FIREBASE_APP_ID
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+---
 
-### Deployment
+## Adding a new patient
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+1. Add a Firestore document to the `patients` collection following the data model above. Set `show` to the clinician's Firebase `uid`.
+2. Upload video files to Firebase Storage under a folder named `p-XX/`.
+3. Add a new commented block to `src/data/videodata.js` with the video metadata, then update the active `export const videos` to point to the new patient.
 
-### `npm run build` fails to minify
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Known limitations / areas for improvement
+
+- Video metadata is hardcoded in `src/data/videodata.js` and must be manually swapped per active patient. Moving this to Firestore would make the app fully data-driven.
+- No loading indicator while the patient list fetches on the Dashboard.
+- No error boundary — a crash in any component will take down the full page.
+- No tests.
