@@ -5,16 +5,15 @@ import { UserAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 
 const Nav = () => {
-	const { logout } = UserAuth();
+	const { user, logout } = UserAuth();
 	const navigate = useNavigate();
 
 	const handleLogout = async () => {
 		try {
 			await logout();
 			navigate('/');
-			console.log('You are logged out');
 		} catch (e) {
-			console.log(e.message);
+			// logout failure is non-critical; navigate anyway
 		}
 	};
 
@@ -39,7 +38,7 @@ const Nav = () => {
 								</div>
 							</div>
 							<div className="flex items-center justify-center py-2 text-2xl font-semibold text-sky-50">
-								<h1>Welcome, Adesh!</h1>
+								<h1>Welcome, {user?.displayName || user?.email}!</h1>
 							</div>
 							<div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
 								<button

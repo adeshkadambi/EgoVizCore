@@ -31,9 +31,9 @@ const Reports = (props) => {
         {showModal ? (<Modal open={showModal} setOpen={setShowModal}/>): null}
         <div className='max-w-7xl mx-auto pb-12 px-4 sm:px-6 lg:px-8'>
           <div className='bg-white rounded-lg shadow px-5 py-6 sm:px-6'>
-            <nav class='flex' aria-label='Breadcrumb' className='mb-4'>
-              <ol class='inline-flex items-center space-x-1 md:space-x-3'>
-                <li class='inline-flex items-center'>
+            <nav aria-label='Breadcrumb' className='flex mb-4'>
+              <ol className='inline-flex items-center space-x-1 md:space-x-3'>
+                <li className='inline-flex items-center'>
                   <button
                     onClick={props.onClose}
                     className='inline-flex items-center text-sm font-medium text-gray-700 hover:text-gray-400'>
@@ -42,7 +42,7 @@ const Reports = (props) => {
                   </button>
                 </li>
                 <li aria-current='page'>
-                  <div class='flex items-center'>
+                  <div className='flex items-center'>
                     <ChevronRightIcon
                       className='mr-2 w-4 h-4'
                       aria-hidden='true'

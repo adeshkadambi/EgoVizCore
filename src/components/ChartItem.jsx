@@ -27,13 +27,10 @@ ChartJS.register(
   Legend
 );
 
-// TODO: populate page on bar chart click
-// REF: https://react-chartjs-2.js.org/docs/working-with-events/
+defaults.font.family =
+  "ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Roboto, Arial, sans-serif";
 
 const ChartItem = (props) => {
-  defaults.font.family =
-    "ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Roboto, Arial, sans-serif";
-
   const options = {
     plugins: {
       legend: {

@@ -15,14 +15,16 @@ const Dashboard = () => {
 
   useEffect(() => {
     async function fetchData() {
-      const q = query(
-        collection(db, "patients"),
-        where("show", "==", `${user.uid}`)
-      );
-      const querySnapshot = await getDocs(q);
-      querySnapshot.forEach((doc) => {
-        setPatients((patients) => [...patients, doc]);
-      });
+      try {
+        const q = query(
+          collection(db, "patients"),
+          where("show", "==", `${user.uid}`)
+        );
+        const querySnapshot = await getDocs(q);
+        setPatients(querySnapshot.docs);
+      } catch (e) {
+        console.error("Failed to fetch patients:", e);
+      }
     }
     fetchData();
   }, [user]);

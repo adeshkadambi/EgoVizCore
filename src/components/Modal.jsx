@@ -37,7 +37,7 @@ const Modal = (props) => {
                     </Dialog.Title>
 
                     {adls.map((adl) => (
-                      <div className='mb-2 mt-2 text-sm text-slate-500 text-left'>
+                      <div key={adl.name} className='mb-2 mt-2 text-sm text-slate-500 text-left'>
                         <p className='text-base font-semibold text-slate-600'>{adl.name}</p>
                         <p className='text-sm font-normal'>{adl.description}</p>
                       </div>
