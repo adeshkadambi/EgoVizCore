@@ -79,9 +79,11 @@ const Login = () => {
                   Sign in
                 </button>
               </div>
-              <div className='text-sm font-medium text-red-600'>
-                {(error === '') ? null : <p>Invalid credentials, please try again...</p>}
-              </div>
+              {error && (
+                <div className='text-sm font-medium text-red-600'>
+                  <p>{error}</p>
+                </div>
+              )}
             </form>
           </div>
         </div>

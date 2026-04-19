@@ -70,8 +70,8 @@ const PatientTable = (props) => {
 							return value;
 						}
 					})
-					.map((patient, index) => (
-						<tr key={index}>
+					.map((patient) => (
+						<tr key={patient.id}>
 							<td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
 								{patient.data().name}
 							</td>
